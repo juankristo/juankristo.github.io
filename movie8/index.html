@@ -8,6 +8,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00897B"/>
+
     <title>PWEB Movie</title>
 </head>
 <body>
@@ -70,6 +73,24 @@
             var page = window.location.hash.substr(1);
             getListMovie();
         });
+    </script>
+
+    <script type="text/javascript">
+        // REGISTER SERVICE WORKER
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", function() {
+                navigator.serviceWorker
+                    .register("js/sw.js")
+                    .then(function() {
+                        console.log("Pendaftaran ServiceWorker berhasil");
+                    })
+                    .catch(function() {
+                        console.log("Pendaftaran ServiceWorker gagal");
+                    });
+            });
+        } else {
+            console.log("ServiceWorker belum didukung browser ini.");
+        }
     </script>
 
 </body>
